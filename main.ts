@@ -1,11 +1,21 @@
 import { Construct } from "constructs";
 import { App, TerraformStack } from "cdktf";
+import { Repository } from "./.gen/providers/github/repository";
+import { GithubProvider } from "./.gen/providers/github";
 
 class MyStack extends TerraformStack {
   constructor(scope: Construct, name: string) {
     super(scope, name);
 
-    // define resources here
+    // Enable github provider
+    new GithubProvider(this, "github", {
+      owner: "suinplayground",
+    });
+
+    // Create repository
+    new Repository(this, "repo", {
+      name: "cdk-terraform",
+    });
   }
 }
 
