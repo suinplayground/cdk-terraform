@@ -1,4 +1,4 @@
-import { App, TerraformStack } from "cdktf";
+import { App, TerraformOutput, TerraformStack } from "cdktf";
 import { Construct } from "constructs";
 import { GithubProvider } from "./.gen/providers/github";
 import { Repository } from "./.gen/providers/github/repository";
@@ -13,8 +13,12 @@ class MyStack extends TerraformStack {
     });
 
     // Create repository
-    new Repository(this, "repo", {
+    const repo = new Repository(this, "repo", {
       name: "cdk-terraform",
+    });
+
+    new TerraformOutput(this, "repo-url", {
+      value: repo.htmlUrl,
     });
   }
 }
