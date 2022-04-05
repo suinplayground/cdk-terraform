@@ -1,7 +1,7 @@
-import { Construct } from "constructs";
 import { App, TerraformStack } from "cdktf";
-import { Repository } from "./.gen/providers/github/repository";
+import { Construct } from "constructs";
 import { GithubProvider } from "./.gen/providers/github";
+import { Repository } from "./.gen/providers/github/repository";
 
 class MyStack extends TerraformStack {
   constructor(scope: Construct, name: string) {
